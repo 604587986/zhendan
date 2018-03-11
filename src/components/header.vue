@@ -1,36 +1,44 @@
 <template>
-    <header class="header">
-        <div class="container">
-            <div class="left">
-                <div class="login">
-                    <span class="welcome">欢迎光临，</span>
-                    <span class="username">夜客2017</span>
-                    <span class="quit">退出</span>
-                </div>
-            </div>
-            <div class="right">
-                <div class="cart">
-                    <i class="iconfont icon-gouwuche"></i>
-                    <span>购物车</span>
-                    <i class="num">(0)</i>
-                </div>
-                <ul class="info">
-                    <li class="item">
-                        <a href="">我的订单</a>
-                    </li>
-                    <li class="item">
-                        <a href="">关注我们</a>
-                    </li>
-                    <li class="item">
-                        <a href="">帮助中心</a>
-                    </li>
-                </ul>
-            </div>
+  <header class="header">
+    <div class="container">
+      <div class="left">
+        <div class="login" v-if="isLogin">
+          <span class="welcome">欢迎光临，</span>
+          <span class="username">夜客2017</span>
+          <span class="quit">退出</span>
         </div>
-    </header>
+        <div class="login" v-else>
+          <router-link class="welcome" :to="{name:'login'}">登录</router-link>
+          <router-link class="quit" :to="{name:'login'}">注册</router-link>
+        </div>
+      </div>
+      <div class="right">
+        <div class="cart">
+          <i class="iconfont icon-gouwuche"></i>
+          <span>购物车</span>
+          <i class="num">(0)</i>
+        </div>
+        <ul class="info">
+          <li class="item">
+            <a href="">我的订单</a>
+          </li>
+          <li class="item">
+            <a href="">关注我们</a>
+          </li>
+          <li class="item">
+            <a href="">帮助中心</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return { isLogin: false };
+  }
+};
 </script>
 <style lang="scss">
 @import "../css/base.scss";
@@ -45,13 +53,22 @@ export default {};
       float: left;
       .login {
         .welcome {
+          cursor: pointer;
+          color: #9e9d9d;
+          text-decoration: none;
         }
         .username {
+          cursor: pointer;
+          color: #9e9d9d;
+          text-decoration: none;
         }
         .quit {
           position: relative;
           margin-left: 32px;
+          cursor: pointer;
           @include sep;
+          color: #9e9d9d;
+          text-decoration: none;
         }
       }
     }
@@ -77,8 +94,9 @@ export default {};
         }
       }
       .cart {
-          margin-left: 40px;
+        margin-left: 40px;
         float: right;
+        cursor: pointer;
         .icon-gouwuche {
           font-size: 20px;
           line-height: 1;
