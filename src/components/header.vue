@@ -15,8 +15,8 @@
       <div class="right">
         <div class="cart">
           <i class="iconfont icon-gouwuche"></i>
-          <span>购物车</span>
-          <i class="num">(0)</i>
+          <span>购物车(0)</span>
+    
         </div>
         <ul class="info">
           <li class="item">
@@ -74,6 +74,7 @@ export default {
     }
     .right {
       float: right;
+      height: 100%;
       .info {
         @include list(row);
         width: 230px;
@@ -96,11 +97,15 @@ export default {
       .cart {
         margin-left: 40px;
         float: right;
+        height: 100%;
         cursor: pointer;
+        span{
+          line-height: 40px;
+          vertical-align: top;
+        }
         .icon-gouwuche {
           font-size: 20px;
-          line-height: 1;
-          vertical-align: top;
+          line-height: 38px;;
         }
       }
     }

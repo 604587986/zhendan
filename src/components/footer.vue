@@ -43,13 +43,14 @@
             <div class="follow">
                 <h4>关注我们</h4>
                 <div class="content">
-                    <div class="item">
+                    <a class="item" href="https://weibo.com/u/6418580550?refer_flag=1001030101_&is_hot=1">
                         <i class="iconfont icon-weibo1"></i>
                         <p>官方微博</p>
-                    </div>
+                    </a>
                     <div class="item">
-                        <i class="iconfont icon-weixin"></i>
-                        <p>微信公众号</p>                        
+                        <i class="iconfont icon-weixin1-copy"></i>
+                        <p>微信公众号</p>     
+                        <div class="erweima"><img src="static/erweima.png" alt="震旦珠宝"></div>                   
                     </div>
                 </div>
             </div>
@@ -63,7 +64,7 @@ export default {};
 <style lang="scss">
 .footer {
   background: #605f5a;
-  padding-bottom: 66px;;
+  padding-bottom: 66px;
   .container {
     padding: 66px 0;
     font-size: 0;
@@ -95,34 +96,52 @@ export default {};
       .item {
         flex: 1;
         ul {
-            margin-top: 38px;
+          margin-top: 38px;
           li {
             font-size: 14px;
             margin-bottom: 14px;
-            color: #F7F7F7
+            color: #f7f7f7;
           }
         }
       }
     }
     .follow {
-      vertical-align: top;        
+      vertical-align: top;
       display: inline-block;
-      .content{
-          display: flex;
-          flex-direction: row;
-          margin-top: 63px;
-          .item{
-              width: 95px;
-              font-size: 14px;
-              color: #f7f7f7;
-              .iconfont{
-                  font-size: 40px;
-                  color: #ccc;
-              }
-              p{
-                  margin-top: 20px;
-              }
+      .content {
+        display: flex;
+        flex-direction: row;
+        margin-top: 63px;
+        .item {
+          width: 95px;
+          font-size: 14px;
+          color: #f7f7f7;
+          display: block;
+          text-decoration: none;
+          position: relative;
+          .iconfont {
+            font-size: 40px;
+            color: #ccc;
           }
+          p {
+            margin-top: 20px;
+          }
+          .erweima {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: -100px;
+            right: -75px;
+            display: none;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          &:hover .erweima{
+              display: block;
+          }
+        }
       }
     }
     h4 {
@@ -130,9 +149,9 @@ export default {};
       color: #d8966e;
     }
   }
-  .line{
-      background: #DE996F;
-      height: 23px;
+  .line {
+    background: #de996f;
+    height: 23px;
   }
 }
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from "./pages/index";
 import Login from "./pages/login";
+import ContactUs from "./pages/contact_us"
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/contact_us',
+      name:'contact_us',
+      component: ContactUs
     }
   ]
 })

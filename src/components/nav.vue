@@ -6,27 +6,69 @@
             </div>
             <div class="right">
                 <div class="search">
-                    <input type="text" ref="search" @keydown.enter="search">
-                    <i class="iconfont icon-search" @click="showInput(inputFlag)"></i>
+                    <input type="text" ref="search" @keydown.enter="search" @mouseover="showInput">
+                    <i class="iconfont icon-search" @mouseover="showInput" @mouseout="hideInput" @click="search"></i>
                 </div>
                 <ul class="menu">
                     <li @mouseover="showDropdown(1)" @mouseout="hideDropdown">首页
-                        <div class="dropdown" :ref="currentDropdown==1?'dropdown':''" @mouseover="showDropdown(1)" @mouseout="hideDropdown">首页</div>
+                        <div class="dropdown" :ref="currentDropdown==1?'dropdown':''" @mouseover="showDropdown(1)" @mouseout="hideDropdown">
+                          <ul>
+                            <li>栏目导航</li>
+                            <li>商品列表页</li>
+                            <li>商品详情页</li>
+                          </ul>
+                        </div>
                     </li>
                     <li @mouseover="showDropdown(2)" @mouseout="hideDropdown">珠宝系列
-                        <div class="dropdown" :ref="currentDropdown==2?'dropdown':''" @mouseover="showDropdown(2)" @mouseout="hideDropdown">珠宝系列</div>
+                        <div class="dropdown" :ref="currentDropdown==2?'dropdown':''" @mouseover="showDropdown(2)" @mouseout="hideDropdown">
+                          <ul>
+                            <li>钻石</li>
+                            <li>彩钻</li>
+                            <li>彩宝</li>
+                            <li>玉石</li>
+                            <li>其他</li>
+                          </ul>
+                        </div>
                     </li>
                     <li @mouseover="showDropdown(3)" @mouseout="hideDropdown">婚嫁系列
-                        <div class="dropdown" :ref="currentDropdown==3?'dropdown':''" @mouseover="showDropdown(3)" @mouseout="hideDropdown">婚嫁系列</div>
+                        <div class="dropdown" :ref="currentDropdown==3?'dropdown':''" @mouseover="showDropdown(3)" @mouseout="hideDropdown">
+                          <ul>
+                            <li>钻石婚戒</li>
+                            <li>钻石项链</li>
+                            <li>裸钻定制</li>
+                          </ul>
+                        </div>
                     </li>
                     <li @mouseover="showDropdown(4)" @mouseout="hideDropdown">匠心臻品
-                        <div class="dropdown" :ref="currentDropdown==4?'dropdown':''" @mouseover="showDropdown(4)" @mouseout="hideDropdown">匠心臻品</div>
+                        <div class="dropdown" :ref="currentDropdown==4?'dropdown':''" @mouseover="showDropdown(4)" @mouseout="hideDropdown">
+                          <ul>
+                            <li>裸钻定制</li>
+                            <li>彩钻定制</li>
+                            <li>彩宝定制</li>
+                            <li>玉石定制</li>
+                            <li>款式</li>
+                          </ul>
+                        </div>
                     </li>
                     <li @mouseover="showDropdown(5)" @mouseout="hideDropdown">客户服务
-                        <div class="dropdown" :ref="currentDropdown==5?'dropdown':''" @mouseover="showDropdown(5)" @mouseout="hideDropdown">客户服务</div>
+                        <div class="dropdown" :ref="currentDropdown==5?'dropdown':''" @mouseover="showDropdown(5)" @mouseout="hideDropdown">
+                          <ul>
+                            <li>珠宝知识</li>
+                            <li>影像学习</li>
+                            <li>珠宝保养</li>
+                            <li>让宝贝回家</li>
+                          </ul>
+                        </div>
                     </li>
                     <li @mouseover="showDropdown(6)" @mouseout="hideDropdown">sino品牌
-                        <div class="dropdown" :ref="currentDropdown==6?'dropdown':''" @mouseover="showDropdown(6)" @mouseout="hideDropdown">sino品牌</div>
+                        <div class="dropdown" :ref="currentDropdown==6?'dropdown':''" @mouseover="showDropdown(6)" @mouseout="hideDropdown">
+                          <ul>
+                            <li>震旦文化</li>
+                            <li>专家团队</li>
+                            <li>设计团队</li>
+                            <li><router-link :to="{name:'contact_us'}">联系我们</router-link></li>
+                          </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -37,27 +79,24 @@
 export default {
   data() {
     return {
-      inputFlag: false,
-      currentDropdown: 0
+      currentDropdown: 0,
+      dropdownHeight: "602px"
     };
   },
   methods: {
-    showInput(flag) {
-      if (flag == false) {
-        (this.$refs.search.style.width = "135px"),
-          (this.$refs.search.style.paddingLeft = "10px"),
-          (this.inputFlag = true);
-      } else {
-        (this.$refs.search.style.width = 0),
-          (this.$refs.search.style.paddingLeft = 0),
-          (this.inputFlag = false);
-      }
+    showInput() {
+      this.$refs.search.style.width = "135px";
+      this.$refs.search.style.paddingLeft = "10px";
+    },
+    hideInput() {
+      this.$refs.search.style.width = 0;
+      this.$refs.search.style.paddingLeft = 0;
     },
     showDropdown(i) {
       this.currentDropdown = i;
       this.$nextTick(function() {
         this.$refs.dropdown.style.opacity = 1;
-        this.$refs.dropdown.style.height = "810px";
+        this.$refs.dropdown.style.height = this.dropdownHeight;
       });
     },
     hideDropdown() {
@@ -98,10 +137,10 @@ export default {
         width: 484px;
         float: right;
         @include list(row);
-        li {
+        >li {
           text-align: center;
           transition: all 0.5s;
-          cursor:default;
+          cursor: pointer;
           flex: 1;
           &:hover {
             background: #de996f;
@@ -111,6 +150,7 @@ export default {
       .search {
         float: right;
         margin-left: 33px;
+        font-size: 0;
         input {
           width: 0;
           height: 21px;
@@ -123,10 +163,12 @@ export default {
           color: rgb(84, 84, 84);
           outline: none;
           transition: all 0.5s;
+          vertical-align: middle;
         }
         .icon-search {
           font-size: 20px;
           vertical-align: middle;
+          line-height: 69px;
         }
       }
     }
@@ -137,8 +179,8 @@ export default {
     height: 0;
     background: #fff;
     z-index: 99;
-    transition: height 0.5s;
-    transition-delay: .2s;
+    transition: all 0.5s;
+    transition-delay: 0.2s;
     left: 0;
     top: 100%;
     font-size: 20px;

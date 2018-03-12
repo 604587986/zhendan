@@ -72,7 +72,7 @@
                             <div class="help">
                                 <div class="zhaohuimima">
                                     <a>注册并遵守震旦&nbsp;
-                                        <i style="color:#000">用户协议</i>和&nbsp
+                                        <i style="color:#000">用户协议</i>和&nbsp;
                                         <i style="color:#000">隐私政策</i>
                                     </a>
                                 </div>
@@ -229,6 +229,7 @@ export default {
               a{
                   color: #DE9A6E;
                   margin-left: 24px;
+                  cursor: pointer;
               }
           }
         }
