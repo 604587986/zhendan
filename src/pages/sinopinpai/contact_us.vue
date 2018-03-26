@@ -1,18 +1,12 @@
 <template>
   <div class="contact-us">
-    <my-nav></my-nav>
          <div class="banner">
             <img src="static/contact_us.png">
         </div>
         <div class="container">
         <div class="content">
-            <div class="crumb">
-              <router-link :to="{name:'home'}">首页</router-link>
-              <i class="arrow"></i>
-              <span>sino品牌</span>
-              <i class="arrow"></i>
-              <span>联系我们</span>
-            </div>
+            <!-- 面包屑 -->
+            <crumb :crumb="crumb"></crumb>
             <div class="map-wrapper">
               <div class="map"></div>
               <div class="more"></div>
@@ -22,11 +16,29 @@
   </div>
 </template>
 <script>
-import MyNav from "../components/nav";
+import Crumb from "@/components/crumb";
 
 export default {
+  data() {
+    return {
+      crumb: [
+        {
+          url: "",
+          name: "首页"
+        },
+        {
+          url: "",
+          name: "sino品牌"
+        },
+        {
+          url: "",
+          name: "联系我们"
+        },
+      ]
+    };
+  },
   components: {
-    MyNav
+    Crumb
   },
   props: {
     banner: {
@@ -47,31 +59,14 @@ export default {
   }
   .container {
     .content {
-      .crumb {
-        font-size: 14px;
-        color: rgb(87, 86, 81);
-        height: 54px;
-        line-height: 54px;
-        a {
-          text-decoration: none;
-          color: rgb(87, 86, 81);
-        }
-        .arrow {
-          display: inline-block;
-          width: 12px;
-          height: 12px;
-          background: url(../../static/arrow.png) no-repeat 0 0;
-          background-size: 100% 100%;
-        }
-      }
-      .map-wrapper{
+      .map-wrapper {
         font-size: 0;
         height: 528px;
         display: flex;
-        .map{
+        .map {
           width: 770px;
         }
-        .more{
+        .more {
           flex: 1;
         }
       }

@@ -157,6 +157,7 @@ export default {
                   background: #f3fbfe;
                   font-size: 15px;
                   border: 1px solid #ccc;
+                  margin-top: -1px;
                   .change {
                     font-size: 12px;
                     height: 32px;

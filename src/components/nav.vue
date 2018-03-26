@@ -24,7 +24,7 @@
                           <ul>
                             <li>钻石</li>
                             <li>彩钻</li>
-                            <li>彩宝</li>
+                            <li @click="jump('caibao')">彩宝</li>
                             <li>玉石</li>
                             <li>其他</li>
                           </ul>
@@ -66,7 +66,7 @@
                             <li>震旦文化</li>
                             <li>专家团队</li>
                             <li>设计团队</li>
-                            <li><router-link :to="{name:'contact_us'}">联系我们</router-link></li>
+                            <li @click="jump('contact_us')">联系我们</li>
                           </ul>
                         </div>
                     </li>
@@ -105,6 +105,10 @@ export default {
     },
     search() {
       alert("搜索到：\n" + this.$refs.search.value);
+    },
+    jump(url){
+      this.hideDropdown();
+      this.$router.push({name:url})
     }
   }
 };
